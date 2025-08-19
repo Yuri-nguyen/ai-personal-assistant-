@@ -86,3 +86,26 @@ def external_learn(topic):
     # TODO: Tích hợp search web/crawl/LLM để tự động học hỏi
     print(f"AI đang học thêm về chủ đề: {topic}")
     # Ví dụ: Gọi API Bing/GPT, crawl wikipedia, lưu kết quả vào database/phân tích
+def analyze_user_data(chats):
+    # Phân tích lịch sử chat: tìm điểm mạnh/yếu, tổng quan
+    # Đây là ví dụ đơn giản, có thể dùng NLP nâng cao hơn
+    strengths, weaknesses = [], []
+    summary = f"Bạn đã có {len(chats)} cuộc trò chuyện trong tháng."
+    for msg, ai_resp in chats:
+        if "giỏi" in ai_resp or "xuất sắc" in ai_resp:
+            strengths.append(msg)
+        if "cần cải thiện" in ai_resp or "yếu" in ai_resp:
+            weaknesses.append(msg)
+    return {
+        "summary": summary,
+        "strengths": strengths,
+        "weaknesses": weaknesses
+    }
+
+def suggest_growth_path(strengths, weaknesses):
+    # Gợi ý lộ trình dựa vào phân tích (ví dụ)
+    if weaknesses:
+        return f"Hãy tập trung cải thiện các điểm sau: {', '.join(weaknesses)}."
+    if strengths:
+        return f"Tiếp tục phát huy điểm mạnh: {', '.join(strengths)}."
+    return "Chưa đủ dữ liệu để đưa ra lộ trình, hãy trò chuyện thêm với AI."
