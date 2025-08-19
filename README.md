@@ -73,3 +73,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+from transformers import pipeline
+
+# Chatbot AI
+chatbot = pipeline("conversational", model="microsoft/DialoGPT-medium")
+
+def chat_with_user(message):
+    resp = chatbot(message)
+    return resp[0]['generated_text']
+
+def external_learn(topic):
+    # TODO: Tích hợp search web/crawl/LLM để tự động học hỏi
+    print(f"AI đang học thêm về chủ đề: {topic}")
+    # Ví dụ: Gọi API Bing/GPT, crawl wikipedia, lưu kết quả vào database/phân tích
